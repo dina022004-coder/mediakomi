@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#012D6E">
+<title>Медиакоми — угадай цену квартиры</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ЭКРАН 1: СТАРТ -->
+  <section id="screen-start" class="screen screen-start active">
+    <div class="start-hero">
+      <div class="logo-badge">МК</div>
+      <h1 class="brand">Медиакоми</h1>
+      <p class="tagline">Настоящие объявления о продаже квартир в Республике Коми</p>
+    </div>
+    <div class="rules-card">
+      <h2>Как играть</h2>
+      <ol class="rules-list">
+        <li>Смотрите фотографии квартиры из реального объявления</li>
+        <li>Ползунком выберите цену, которую считаете правильной</li>
+        <li>Нажмите «Оценить» — увидите настоящую цену и свои баллы</li>
+      </ol>
+      <p class="rules-note">В одном раунде — <b>10 квартир</b>. Чем ближе ваша цена к реальной, тем больше баллов. Максимум — <b>1000</b>.</p>
+    </div>
+    <button id="btn-start" class="btn btn-primary">Запустить игру</button>
+    <p class="start-disclaimer">Данные: активные объявления Авито · фото и цены — из открытого источника</p>
+  </section>
+
+  <!-- ЭКРАН 2: ЛОТ -->
+  <section id="screen-game" class="screen screen-game">
+    <header class="game-header">
+      <div class="game-header-row">
+        <span class="brand-mini">Медиакоми</span>
+        <span class="round-counter" id="round-counter">Квартира 1 / 10</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </header>
+
+    <div class="lot-card">
+      <!-- Галерея -->
+      <div class="gallery" id="gallery"></div>
+      <div class="gallery-dots" id="gallery-dots"></div>
+
+      <!-- Инфо о лоте -->
+      <div class="lot-info">
+        <h2 class="lot-title" id="lot-title"></h2>
+        <p class="lot-street" id="lot-street"></p>
+      </div>
+
+      <!-- Ставка -->
+      <div class="bid-block" id="bid-block">
+        <label class="bid-label" for="price-slider">Ваша цена:</label>
+        <output class="bid-value" id="bid-value">500 000 ₽</output>
+        <input type="range" id="price-slider" min="50000" max="2000000" step="5000" value="500000"
+               aria-label="Цена квартиры">
+        <div class="slider-scale"><span>50 тыс.</span><span>1 млн</span><span>2 млн</span></div>
+      </div>
+
+      <button id="btn-submit" class="btn btn-primary">Оценить</button>
+
+      <!-- Результат раунда -->
+      <div class="round-result hidden" id="round-result">
+        <p class="rr-verdict" id="rr-verdict"></p>
+        <div class="rr-rows">
+          <div class="rr-row"><span>Ваша цена</span><b id="rr-guess"></b></div>
+          <div class="rr-row rr-row-real"><span>Реальная цена</span><b id="rr-real"></b></div>
+          <div class="rr-row"><span>Разница</span><b id="rr-diff"></b></div>
+        </div>
+        <div class="rr-points" id="rr-points"></div>
+        <a class="rr-link" id="rr-link" target="_blank" rel="noopener">Открыть объявление на Авито ↗</a>
+        <button id="btn-next" class="btn btn-primary">Следующая квартира</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЭКРАН 3: ИТОГИ -->
+  <section id="screen-final" class="screen screen-final">
+    <p class="final-overline">Ваш результат</p>
+    <div class="arch-card">
+      <div class="arch-emoji" id="arch-emoji"></div>
+      <h2 class="arch-title" id="arch-title"></h2>
+      <p class="arch-desc" id="arch-desc"></p>
+    </div>
+    <div class="final-score-card">
+      <div class="final-score-num"><span id="final-score"></span><small>/ 1000 баллов</small></div>
+      <div class="final-stats">
+        <div class="stat"><span id="stat-close"></span><small>точных оценок</small></div>
+        <div class="stat"><span id="stat-over"></span><small>переплатили бы</small></div>
+        <div class="stat"><span id="stat-under"></span><small>недооценили</small></div>
+      </div>
+    </div>
+    <div class="final-details" id="final-details"></div>
+    <button id="btn-restart" class="btn btn-primary">Играть снова</button>
+  </section>
+
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
